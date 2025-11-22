@@ -5,11 +5,10 @@ import 'package:fund_management_app/core/common/widgets/app_button.dart';
 import 'package:fund_management_app/core/common/widgets/app_cached_network_image_widget.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/common/widgets/theme_selection_bottom_sheet.dart';
+import '../../../../core/common/widgets/settings_bottom_sheet.dart';
 import '../../../../core/config/app_routes.dart';
 import '../../../../core/config/injection_container.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
-import '../../../auth/presentation/bloc/auth_event.dart';
 import '../../../auth/presentation/bloc/auth_state.dart';
 import '../../domain/entities/dashboard_data.dart';
 import '../bloc/dashboard_bloc.dart';
@@ -61,49 +60,33 @@ class DashboardPage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
       actions: [
         IconButton(
-          icon: const Icon(Icons.notifications_outlined),
+          icon: const Icon(Icons.settings_outlined),
           onPressed: () {
             showModalBottomSheet(
               context: context,
-              builder: (context) => const ThemeSelectionBottomSheet(),
+              builder: (context) => const SettingsBottomSheet(),
             );
           },
         ),
-        PopupMenuButton<String>(
-          icon: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(60.r)),
-            child: AppCachedNetworkImage(
-              imageURL: "https://avatars.githubusercontent.com/u/47666475?v=4",
-            ),
-          ),
-
-          onSelected: (value) {
-            if (value == 'logout') {
-              // Dispatch logout event to AuthBloc
-              context.read<AuthBloc>().add(LogoutRequested());
-            }
-          },
-          itemBuilder: (BuildContext context) => [
-            PopupMenuItem<String>(
-              value: 'logout',
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.logout,
-                    color: Theme.of(context).colorScheme.error,
-                  ),
-                  12.horizontalSpace,
-                  Text(
-                    'Logout',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                  ),
-                ],
+        Container(
+          padding: EdgeInsets.all(12.r),
+          child: InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => const SettingsBottomSheet(),
+              );
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(60.r)),
+              child: AppCachedNetworkImage(
+                imageURL:
+                    "https://avatars.githubusercontent.com/u/47666475?v=4",
               ),
             ),
-          ],
+          ),
         ),
+        8.horizontalSpace,
       ],
     );
   }

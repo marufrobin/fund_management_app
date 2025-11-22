@@ -5,6 +5,7 @@ import 'package:fund_management_app/core/config/app_routes.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/common/widgets/app_button.dart';
+import '../../../../core/common/widgets/settings_bottom_sheet.dart';
 import '../../../../core/config/injection_container.dart';
 import '../bloc/fund_details_bloc.dart';
 import '../bloc/fund_details_event.dart';
@@ -37,9 +38,15 @@ class _FundDetailsView extends StatelessWidget {
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications_outlined),
-            onPressed: () {},
+            icon: const Icon(Icons.settings_outlined),
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => const SettingsBottomSheet(),
+              );
+            },
           ),
+          8.horizontalSpace,
         ],
       ),
       body: BlocBuilder<FundDetailsBloc, FundDetailsState>(
@@ -271,14 +278,14 @@ class _FundDetailsView extends StatelessWidget {
             'Invested Amount',
             '\$${state.fundDetails.totalInvestment.toStringAsFixed(0)}',
           ),
-          Divider(color: Theme.of(context).dividerColor.withOpacity(0.1)),
+          Divider(color: Theme.of(context).dividerColor.withValues(alpha: 0.1)),
           _buildBreakdownItem(
             context,
             'Total Returns',
             '\$${state.fundDetails.profit.toStringAsFixed(0)}',
             valueColor: Colors.green,
           ),
-          Divider(color: Theme.of(context).dividerColor.withOpacity(0.1)),
+          Divider(color: Theme.of(context).dividerColor.withValues(alpha: 0.1)),
           _buildBreakdownItem(
             context,
             'Return %',
@@ -323,10 +330,10 @@ class _FundDetailsView extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
+        color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
         border: Border(
           top: BorderSide(
-            color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
           ),
         ),
       ),
