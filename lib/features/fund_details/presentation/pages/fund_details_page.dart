@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fund_management_app/core/config/app_routes.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/common/widgets/app_button.dart';
@@ -28,7 +29,7 @@ class _FundDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      // backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         title: const Text('Portfolio Overview'),
         centerTitle: true,
@@ -60,16 +61,18 @@ class _FundDetailsView extends StatelessWidget {
   Widget _buildContent(BuildContext context, FundDetailsLoaded state) {
     return SingleChildScrollView(
       padding: EdgeInsets.all(16.r),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _buildStatsCards(context, state),
-          24.verticalSpace,
-          _buildChartSection(context, state),
-          24.verticalSpace,
-          _buildBreakdownList(context, state),
-          80.verticalSpace, // Space for bottom bar
-        ],
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _buildStatsCards(context, state),
+            24.verticalSpace,
+            _buildChartSection(context, state),
+            24.verticalSpace,
+            _buildBreakdownList(context, state),
+            80.verticalSpace, // Space for bottom bar
+          ],
+        ),
       ),
     );
   }
@@ -89,7 +92,7 @@ class _FundDetailsView extends StatelessWidget {
           child: _buildStatCard(
             context,
             'Current Value',
-            '\$${state.fundDetails.currentValue.toStringAsFixed(0)}',
+            '\$${state.fundDetails.currentValue.toStringAsFixed(0)} \n ',
           ),
         ),
         12.horizontalSpace,
@@ -98,7 +101,8 @@ class _FundDetailsView extends StatelessWidget {
             context,
             'Profit',
             '+\$${state.fundDetails.profit.toStringAsFixed(0)}',
-            subtitle: '+${state.fundDetails.profitPercentage.toStringAsFixed(2)}%',
+            subtitle:
+                '+${state.fundDetails.profitPercentage.toStringAsFixed(2)}%',
             isPositive: true,
           ),
         ),
@@ -125,25 +129,25 @@ class _FundDetailsView extends StatelessWidget {
           Text(
             title,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ),
           8.verticalSpace,
           Text(
             value,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: isPositive ? Colors.green : null,
-                ),
+              fontWeight: FontWeight.bold,
+              color: isPositive ? Colors.green : null,
+            ),
           ),
           if (subtitle != null) ...[
             4.verticalSpace,
             Text(
               subtitle,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: isPositive ? Colors.green : null,
-                    fontWeight: FontWeight.w500,
-                  ),
+                color: isPositive ? Colors.green : null,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ],
         ],
@@ -164,16 +168,16 @@ class _FundDetailsView extends StatelessWidget {
           Text(
             'Fund Performance',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ),
           8.verticalSpace,
           Text(
             '\$${state.fundDetails.currentValue.toStringAsFixed(0)}',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
           Row(
             children: [
@@ -185,9 +189,9 @@ class _FundDetailsView extends StatelessWidget {
               Text(
                 '+${state.fundDetails.profitPercentage.toStringAsFixed(2)}%',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -195,7 +199,7 @@ class _FundDetailsView extends StatelessWidget {
           _buildTimePeriodSelector(context, state.selectedTimePeriod),
           24.verticalSpace,
           SizedBox(
-            height: 200.h,
+            height: 300.h,
             child: FundPerformanceChart(data: state.fundDetails.chartData),
           ),
         ],
@@ -231,11 +235,11 @@ class _FundDetailsView extends StatelessWidget {
                 child: Text(
                   period,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isSelected
-                            ? Theme.of(context).colorScheme.onPrimary
-                            : Theme.of(context).colorScheme.onSurfaceVariant,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: isSelected
+                        ? Theme.of(context).colorScheme.onPrimary
+                        : Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
@@ -292,15 +296,15 @@ class _FundDetailsView extends StatelessWidget {
           Text(
             label,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ),
           Text(
             value,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: valueColor,
-                ),
+              fontWeight: FontWeight.w600,
+              color: valueColor,
+            ),
           ),
         ],
       ),
@@ -318,23 +322,29 @@ class _FundDetailsView extends StatelessWidget {
           ),
         ),
       ),
-      child: Row(
-        children: [
-          Expanded(
-            child: AppButton(
-              buttonLabel: 'Withdraw',
-              variant: ButtonVariant.OUTLINED,
-              onPressed: () => context.push('/withdraw'),
+      child: SafeArea(
+        bottom: true,
+        top: false,
+        child: Row(
+          children: [
+            Expanded(
+              child: AppButton(
+                buttonLabel: 'Withdraw',
+                variant: ButtonVariant.OUTLINED,
+                onPressed: () =>
+                    context.pushNamed(AppRoutesNames.withdrawFundScreen),
+              ),
             ),
-          ),
-          16.horizontalSpace,
-          Expanded(
-            child: AppButton(
-              buttonLabel: 'Invest More',
-              onPressed: () => context.push('/deposit'),
+            16.horizontalSpace,
+            Expanded(
+              child: AppButton(
+                buttonLabel: 'Invest More',
+                onPressed: () =>
+                    context.pushNamed(AppRoutesNames.depositFundsScreen),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
