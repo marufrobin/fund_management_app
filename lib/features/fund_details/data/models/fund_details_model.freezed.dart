@@ -208,8 +208,8 @@ return $default(_that.totalInvestment,_that.currentValue,_that.profit,_that.prof
 /// @nodoc
 @JsonSerializable()
 
-class _FundDetailsModel implements FundDetailsModel {
-  const _FundDetailsModel({required this.totalInvestment, required this.currentValue, required this.profit, required this.profitPercentage, required final  List<FundHistoryItemModel> chartData}): _chartData = chartData;
+class _FundDetailsModel extends FundDetailsModel {
+  const _FundDetailsModel({required this.totalInvestment, required this.currentValue, required this.profit, required this.profitPercentage, required final  List<FundHistoryItemModel> chartData}): _chartData = chartData,super._();
   factory _FundDetailsModel.fromJson(Map<String, dynamic> json) => _$FundDetailsModelFromJson(json);
 
 @override final  double totalInvestment;
@@ -478,8 +478,8 @@ return $default(_that.date,_that.value);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _FundHistoryItemModel implements FundHistoryItemModel {
-  const _FundHistoryItemModel({required this.date, required this.value});
+class _FundHistoryItemModel extends FundHistoryItemModel {
+  const _FundHistoryItemModel({required this.date, required this.value}): super._();
   factory _FundHistoryItemModel.fromJson(Map<String, dynamic> json) => _$FundHistoryItemModelFromJson(json);
 
 @override final  DateTime date;

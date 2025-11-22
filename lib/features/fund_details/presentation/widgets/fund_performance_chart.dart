@@ -30,10 +30,12 @@ class FundPerformanceChart extends StatelessWidget {
           lineBarsData: [
             LineChartBarData(
               spots: data
-                  .map((e) => FlSpot(
-                        e.date.millisecondsSinceEpoch.toDouble(),
-                        e.value,
-                      ))
+                  .map(
+                    (e) => FlSpot(
+                      e.date.millisecondsSinceEpoch.toDouble(),
+                      e.value,
+                    ),
+                  )
                   .toList(),
               isCurved: true,
               color: primaryColor,
@@ -68,7 +70,7 @@ class FundPerformanceChart extends StatelessWidget {
                   );
                 }).toList();
               },
-              tooltipRoundedRadius: 8.r,
+              tooltipBorderRadius: BorderRadius.circular(8.r),
               tooltipPadding: EdgeInsets.all(8.r),
               tooltipMargin: 8.r,
               fitInsideHorizontally: true,
