@@ -69,27 +69,25 @@ class _WithdrawFundViewState extends State<_WithdrawFundView> {
         elevation: 0,
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: BlocConsumer<WithdrawalBloc, WithdrawalState>(
-            listener: (context, state) {
-              if (state is WithdrawalLoaded && state.isProgrammaticUpdate) {
-                _amountController.text = state.inputAmount.toString();
+        child: BlocConsumer<WithdrawalBloc, WithdrawalState>(
+          listener: (context, state) {
+            if (state is WithdrawalLoaded && state.isProgrammaticUpdate) {
+              _amountController.text = state.inputAmount.toString();
 
-                /// Move cursor to end
-                _amountController.selection = TextSelection.fromPosition(
-                  TextPosition(offset: _amountController.text.length),
-                );
-              }
-            },
-            builder: (context, state) {
-              if (state is WithdrawalLoading) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state is WithdrawalLoaded) {
-                return _buildContent(context, state);
-              }
-              return const SizedBox.shrink();
-            },
-          ),
+              /// Move cursor to end
+              _amountController.selection = TextSelection.fromPosition(
+                TextPosition(offset: _amountController.text.length),
+              );
+            }
+          },
+          builder: (context, state) {
+            if (state is WithdrawalLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is WithdrawalLoaded) {
+              return _buildContent(context, state);
+            }
+            return const SizedBox.shrink();
+          },
         ),
       ),
     );
