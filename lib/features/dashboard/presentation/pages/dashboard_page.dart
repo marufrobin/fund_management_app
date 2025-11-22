@@ -256,74 +256,79 @@ class DashboardPage extends StatelessWidget {
       separatorBuilder: (context, index) => 12.verticalSpace,
       itemBuilder: (context, index) {
         final transaction = transactions[index];
-        return Container(
-          padding: EdgeInsets.all(16.r),
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            borderRadius: BorderRadius.circular(16.r),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 10,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
-          child: Row(
-            children: [
-              Container(
-                padding: EdgeInsets.all(12.r),
-                decoration: BoxDecoration(
-                  color: transaction.isIncome
-                      ? Theme.of(
-                          context,
-                        ).colorScheme.secondary.withValues(alpha: 0.1)
-                      : Theme.of(
-                          context,
-                        ).colorScheme.error.withValues(alpha: 0.1),
-                  shape: BoxShape.circle,
+        return InkWell(
+          onTap: () {
+            context.pushNamed(AppRoutesNames.fundDetailsScreen);
+          },
+          child: Container(
+            padding: EdgeInsets.all(16.r),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(16.r),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 2),
                 ),
-                child: Icon(
-                  transaction.isIncome
-                      ? Icons.arrow_downward
-                      : Icons.arrow_upward,
-                  color: transaction.isIncome
-                      ? Theme.of(context).colorScheme.secondary
-                      : Theme.of(context).colorScheme.error,
-                  size: 20.r,
+              ],
+            ),
+            child: Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(12.r),
+                  decoration: BoxDecoration(
+                    color: transaction.isIncome
+                        ? Theme.of(
+                            context,
+                          ).colorScheme.secondary.withValues(alpha: 0.1)
+                        : Theme.of(
+                            context,
+                          ).colorScheme.error.withValues(alpha: 0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    transaction.isIncome
+                        ? Icons.arrow_downward
+                        : Icons.arrow_upward,
+                    color: transaction.isIncome
+                        ? Theme.of(context).colorScheme.secondary
+                        : Theme.of(context).colorScheme.error,
+                    size: 20.r,
+                  ),
                 ),
-              ),
-              16.horizontalSpace,
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      transaction.title,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.w600,
+                16.horizontalSpace,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        transaction.title,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    4.verticalSpace,
-                    Text(
-                      _formatDate(transaction.date),
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      4.verticalSpace,
+                      Text(
+                        _formatDate(transaction.date),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Text(
-                '${transaction.isIncome ? '+' : '-'}\$${transaction.amount.toStringAsFixed(2)}',
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: transaction.isIncome
-                      ? Theme.of(context).colorScheme.secondary
-                      : Theme.of(context).colorScheme.error,
+                Text(
+                  '${transaction.isIncome ? '+' : '-'}\$${transaction.amount.toStringAsFixed(2)}',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: transaction.isIncome
+                        ? Theme.of(context).colorScheme.secondary
+                        : Theme.of(context).colorScheme.error,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
