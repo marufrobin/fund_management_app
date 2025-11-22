@@ -2,6 +2,20 @@
 
 A comprehensive Flutter application for managing investment funds. This app allows users to track their portfolio performance, view detailed fund breakdowns, deposit and withdraw funds, and manage their account settings with a clean and modern interface.
 
+## Navigation & Usage
+
+*   **Login**: Enter any email and password to log in.
+*   **Dashboard**:
+    *   **Portfolio Card**: Click on the "Portfolio Value" card to view **Fund Details**.
+    *   **Quick Actions**: Use "Deposit" or "Withdraw" buttons to manage funds.
+*   **Fund Details**:
+    *   **Chart**: Select different time periods (1M, 3M, 6M, 1Y, All) to view performance.
+    *   **Settings**: Click the gear icon in the top-right to change **Theme** or **Logout**.
+*   **Transactions**:
+    *   **Deposit**: Enter amount -> Select Payment Method -> Confirm.
+    *   **OTP**: Use code **1234** for verification.
+    *   **Withdraw**: Enter amount -> Confirm.
+
 ## Screenshots
 
 | Login | Dashboard | Portfolio Overview |
