@@ -16,6 +16,10 @@ A comprehensive Flutter application for managing investment funds. This app allo
     *   **OTP**: Use code **1234** for verification.
     *   **Withdraw**: Enter amount -> Confirm.
 
+## Demo
+
+<img src="https://github.com/marufrobin/fund_management_app/raw/main/CleanShot%202025-11-22%20at%2014.42.26.gif" width="300" />
+
 ## Screenshots
 
 | Login | Dashboard | Portfolio Overview |
