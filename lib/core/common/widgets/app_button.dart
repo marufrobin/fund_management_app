@@ -66,52 +66,54 @@ class AppButton extends StatelessWidget {
       child: AnimatedOpacity(
         opacity: isEnabled && !isLoading ? 1.0 : 0.5,
         duration: const Duration(milliseconds: 300),
-        child: SizedBox(
-          width: isFullWidth ? double.infinity : null,
-          child: TextButton(
-            onPressed: onPressed,
-            style: TextButton.styleFrom(
-              visualDensity: visualDensity,
-              backgroundColor: buttonColor ?? style.backgroundColor,
-              foregroundColor: buttonColor ?? style.foregroundColor,
-              side: style.border,
-              fixedSize: fixedSize,
-              shape:
-                  buttonLabel?.isNotEmpty ?? false
-                      ? style.shape
-                      : const CircleBorder(),
-              elevation: elevation ?? style.elevation,
-              padding: padding ?? style.padding,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (isLoading)
-                  Padding(
-                    padding: EdgeInsets.only(right: 8.r),
-                    child: SizedBox(
-                      width: 20.r,
-                      height: 20.r,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        strokeCap: StrokeCap.round,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          textStyle?.color ??
-                              style.foregroundColor ??
-                              Colors.white,
-                        ),
-                      ),
+        child:
+            SizedBox(
+                  width: isFullWidth ? double.infinity : null,
+                  child: TextButton(
+                    onPressed: onPressed,
+                    style: TextButton.styleFrom(
+                      visualDensity: visualDensity,
+                      backgroundColor: buttonColor ?? style.backgroundColor,
+                      foregroundColor: buttonColor ?? style.foregroundColor,
+                      side: style.border,
+                      fixedSize: fixedSize,
+                      shape: buttonLabel?.isNotEmpty ?? false
+                          ? style.shape
+                          : const CircleBorder(),
+                      elevation: elevation ?? style.elevation,
+                      padding: padding ?? style.padding,
                     ),
-                  ).animate().fade().scale(),
-                _buildContent(style: style),
-              ],
-            ),
-          ),
-        ).animate(target: isLoading ? 0 : 1).shimmer(
-              duration: 1200.ms,
-              color: Colors.white.withOpacity(0.2),
-              angle: 45,
-            ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (isLoading)
+                          Padding(
+                            padding: EdgeInsets.only(right: 8.r),
+                            child: SizedBox(
+                              width: 20.r,
+                              height: 20.r,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                strokeCap: StrokeCap.round,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  textStyle?.color ??
+                                      style.foregroundColor ??
+                                      Colors.white,
+                                ),
+                              ),
+                            ),
+                          ).animate().fade().scale(),
+                        _buildContent(style: style),
+                      ],
+                    ),
+                  ),
+                )
+                .animate(target: isLoading ? 0 : 1)
+                .shimmer(
+                  duration: 1200.ms,
+                  color: Colors.white.withValues(alpha: 0.2),
+                  angle: 45,
+                ),
       ),
     );
   }
@@ -236,9 +238,7 @@ class AppButton extends StatelessWidget {
           ),
           elevation: 0,
           padding: _getPadding(),
-          textStyle: TextStyle(
-            fontSize: _getFontSize(),
-          ),
+          textStyle: TextStyle(fontSize: _getFontSize()),
         );
     }
   }

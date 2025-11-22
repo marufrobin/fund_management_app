@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
+
 import '../../../../core/config/app_routes.dart';
 import '../../../../core/config/injection_container.dart';
 import '../bloc/splash_bloc.dart';
@@ -9,6 +11,8 @@ import '../bloc/splash_state.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
+
+  final String assetsName = "assets/finance.json";
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +30,7 @@ class SplashPage extends StatelessWidget {
             }
           }
         },
-        child: const Scaffold(
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FlutterLogo(size: 100),
-                SizedBox(height: 20),
-                CircularProgressIndicator(),
-              ],
-            ),
-          ),
-        ),
+        child: Scaffold(body: Center(child: Lottie.asset(assetsName))),
       ),
     );
   }

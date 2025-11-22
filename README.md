@@ -1,16 +1,21 @@
-# fund_management_app
+# Fund Management App
 
-A new Flutter project.
+A comprehensive Flutter application for managing investment funds. This app allows users to track their portfolio performance, view detailed fund breakdowns, deposit and withdraw funds, and manage their account settings with a clean and modern interface.
 
-## Getting Started
+## Screenshots
 
-This project is a starting point for a Flutter application.
+| Login | Dashboard | Portfolio Overview |
+|:---:|:---:|:---:|
+| <img src="https://github.com/user-attachments/assets/989ae7fd-f989-4939-8942-803f86daae07" width="200" /> | <img src="https://github.com/user-attachments/assets/594bff64-52de-4df6-98a3-cd4885ca24e6" width="200" /> | <img src="https://github.com/user-attachments/assets/efc50a4c-38a0-41f8-a982-2a2e66eeb76d" width="200" /> |
 
-A few resources to get you started if this is your first Flutter project:
+| Fund Details (1M) | Fund Details (All) | Deposit Funds |
+|:---:|:---:|:---:|
+| <img src="https://github.com/user-attachments/assets/b2f832a9-4174-4df9-8a53-ee267c7bebb1" width="200" /> | <img src="https://github.com/user-attachments/assets/8f3cfa1a-6226-4964-b6f5-e82d4d65e42b" width="200" /> | <img src="https://github.com/user-attachments/assets/cfad6814-7f1a-4d50-a0bf-5b65f32350c5" width="200" /> |
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+| Deposit Confirmation | OTP Verification | Withdrawal |
+|:---:|:---:|:---:|
+| <img src="https://github.com/user-attachments/assets/a4f72441-6bd1-42d4-9174-d2cca5b998fb" width="200" /> | <img src="https://github.com/user-attachments/assets/745230c8-2377-4a53-a6c7-afe5660caef5" width="200" /> | <img src="https://github.com/user-attachments/assets/119ae145-d8f9-4b9f-a574-4f7fead1bc25" width="200" /> |
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Withdrawal Confirmation | Settings | Dark Mode |
+|:---:|:---:|:---:|
+| <img src="https://github.com/user-attachments/assets/e170b80e-2edd-41e5-8193-3bb7d50a1a71" width="200" /> | <img src="https://github.com/user-attachments/assets/e4f498ac-50a3-48a6-af0f-8ada88b5c4ba" width="200" /> | <img src="https://github.com/user-attachments/assets/5dc6648e-aecd-4a2b-aa5d-87323103f0b3" width="200" /> |

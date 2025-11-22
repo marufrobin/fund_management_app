@@ -60,7 +60,7 @@ class RootApp extends StatelessWidget {
                 }
               },
               child: MaterialApp.router(
-                title: 'Fund Management App',
+                title: 'Fund management',
                 theme: AppTheme().lightTheme,
                 darkTheme: AppTheme().darkTheme,
                 themeMode: themeMode,
