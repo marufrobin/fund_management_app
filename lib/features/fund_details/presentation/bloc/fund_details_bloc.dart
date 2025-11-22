@@ -8,7 +8,7 @@ class FundDetailsBloc extends Bloc<FundDetailsEvent, FundDetailsState> {
   final GetFundDetails getFundDetails;
 
   FundDetailsBloc({required this.getFundDetails})
-      : super(FundDetailsInitial()) {
+    : super(FundDetailsInitial()) {
     on<LoadFundDetails>(_onLoadFundDetails);
   }
 
@@ -16,17 +16,31 @@ class FundDetailsBloc extends Bloc<FundDetailsEvent, FundDetailsState> {
     LoadFundDetails event,
     Emitter<FundDetailsState> emit,
   ) async {
-    emit(FundDetailsLoading());
+    final currentState = state;
+    if (currentState is FundDetailsLoaded) {
+      emit(
+        currentState.copyWith(
+          selectedTimePeriod: event.timePeriod,
+          isLoading: true,
+        ),
+      );
+    } else {
+      emit(FundDetailsLoading());
+    }
+
     final result = await getFundDetails(
       GetFundDetailsParams(timePeriod: event.timePeriod),
     );
 
     result.fold(
       (failure) => emit(FundDetailsError(failure.message)),
-      (fundDetails) => emit(FundDetailsLoaded(
-        fundDetails: fundDetails,
-        selectedTimePeriod: event.timePeriod,
-      )),
+      (fundDetails) => emit(
+        FundDetailsLoaded(
+          fundDetails: fundDetails,
+          selectedTimePeriod: event.timePeriod,
+          isLoading: false,
+        ),
+      ),
     );
   }
 }

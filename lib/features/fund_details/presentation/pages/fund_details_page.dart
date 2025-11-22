@@ -193,6 +193,14 @@ class _FundDetailsView extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              if (state.isLoading) ...[
+                8.horizontalSpace,
+                SizedBox(
+                  width: 12.r,
+                  height: 12.r,
+                  child: const CircularProgressIndicator(strokeWidth: 2),
+                ),
+              ],
             ],
           ),
           24.verticalSpace,

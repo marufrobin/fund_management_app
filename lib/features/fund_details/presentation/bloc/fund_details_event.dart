@@ -10,7 +10,7 @@ abstract class FundDetailsEvent extends Equatable {
 class LoadFundDetails extends FundDetailsEvent {
   final String timePeriod;
 
-  const LoadFundDetails([this.timePeriod = '6M']);
+  const LoadFundDetails([this.timePeriod = '1M']);
 
   @override
   List<Object> get props => [timePeriod];

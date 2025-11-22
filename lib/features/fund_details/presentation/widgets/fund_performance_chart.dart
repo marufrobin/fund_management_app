@@ -17,7 +17,7 @@ class FundPerformanceChart extends StatelessWidget {
     final primaryColor = theme.colorScheme.primary;
 
     return AspectRatio(
-      aspectRatio: 1.70,
+      aspectRatio: 1.70.r,
       child: LineChart(
         LineChartData(
           gridData: const FlGridData(show: false),
@@ -48,8 +48,8 @@ class FundPerformanceChart extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    primaryColor.withOpacity(0.3),
-                    primaryColor.withOpacity(0.0),
+                    primaryColor.withValues(alpha: 0.3),
+                    primaryColor.withValues(alpha: 0.0),
                   ],
                 ),
               ),
