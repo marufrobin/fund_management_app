@@ -31,7 +31,7 @@ void main() async {
       MultiBlocProvider(
         providers: AppBlocProviderResolver.providers,
         child: DevicePreview(
-          enabled: true,
+          enabled: false,
           builder: (context) => const RootApp(),
         ),
       ),
@@ -54,7 +54,9 @@ class RootApp extends StatelessWidget {
             return BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
                 if (state is LogoutSuccess) {
-                  AppRoutesConfiguration.appRouter.go(AppRoutesNames.loginScreen);
+                  AppRoutesConfiguration.appRouter.go(
+                    AppRoutesNames.loginScreen,
+                  );
                 }
               },
               child: MaterialApp.router(
