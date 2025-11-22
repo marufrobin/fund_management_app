@@ -5,6 +5,7 @@ import 'package:fund_management_app/core/common/widgets/app_button.dart';
 import 'package:fund_management_app/core/common/widgets/app_cached_network_image_widget.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/common/widgets/theme_selection_bottom_sheet.dart';
 import '../../../../core/config/app_routes.dart';
 import '../../../../core/config/injection_container.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
@@ -61,7 +62,12 @@ class DashboardPage extends StatelessWidget {
       actions: [
         IconButton(
           icon: const Icon(Icons.notifications_outlined),
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) => const ThemeSelectionBottomSheet(),
+            );
+          },
         ),
         PopupMenuButton<String>(
           icon: ClipRRect(
@@ -287,6 +293,7 @@ class DashboardPage extends StatelessWidget {
                           ).colorScheme.error.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
                   ),
+
                   child: Icon(
                     transaction.isIncome
                         ? Icons.arrow_downward

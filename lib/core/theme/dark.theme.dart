@@ -6,11 +6,11 @@ const backgroundColor = Color(0xFF1A1A1A);
 // const darkBackgroundColor = Color(0xFF222831); // Deep charcoal black
 const darkBackgroundColor = Color(0xFF2C303A); // Deep charcoal black
 
-const primaryColor = Color(0xFFED7319);
+const primaryColor = Color(0xFF5DADE2); // Light Blue for Dark Mode
 // const primaryFgColor = Color(0xFF010104);
-const primaryFgColor = Color(0xFFffffff);
-const secondaryColor = Color(0xFF020024);
-const secondaryFgColor = Color(0xFFeae9fc);
+const primaryFgColor = Color(0xFF000000); // Black text on Light Blue
+const secondaryColor = Color(0xFF58D68D); // Bright Green for Dark Mode
+const secondaryFgColor = Color(0xFF000000); // Black text on Bright Green
 const accentColor = Color(0xFF0600c2);
 const accentFgColor = Color(0xFFeae9fc);
 
@@ -25,16 +25,14 @@ const darkColorScheme = ColorScheme(
   surface: darkBackgroundColor,
   // surface: backgroundColor,
   onSurface: textColor,
-  error:
-      Brightness.dark == Brightness.light
-          ? Color(0xffCF6679) // Softer red for dark mode
-          : Color(0xffFA2C37),
+  error: Brightness.dark == Brightness.light
+      ? Color(0xffCF6679) // Softer red for dark mode
+      : Color(0xffFA2C37),
 
   // Default Material 3 error red
-  onError:
-      Brightness.dark == Brightness.light
-          ? Color(0xff1E1E1E) // Darker contrast color for dark mode
-          : Color(0xffFFFFFF), // White for light mode
+  onError: Brightness.dark == Brightness.light
+      ? Color(0xff1E1E1E) // Darker contrast color for dark mode
+      : Color(0xffFFFFFF), // White for light mode
   /*
   error: Brightness.dark == Brightness.light
       ? Color(0xffB3261E)
